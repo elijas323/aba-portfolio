@@ -1,0 +1,113 @@
+managed implementation in class zbp_ehj_r_mitarbeiter unique;
+strict ( 2 );
+
+define behavior for ZEHJ_R_Mitarbeiter alias Mitarbeiter
+persistent table zehj_mitarbeiter
+lock master
+authorization master ( global )
+//etag master <field_name>
+{
+  create;// ( authorization : global );
+  update;
+  delete;
+  //field ( readonly ) MitarbeiterUuid;
+
+  association _Urlaubsanspruchs { create; }
+  association _Urlaubsantrags { create; }
+
+  field ( readonly, numbering : managed ) MitarbeiterUuid;
+
+
+  mapping for zehj_mitarbeiter corresponding
+  {
+
+    MitarbeiterUuid = mitarbeiter_uuid;
+    Mitarbeiternummer = mitarbeiternummer;
+    Vorname  = vorname;
+    Nachname = nachname;
+    Eintrittsdatum = eintrittsdatum;
+
+      /* Administrative Data */
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+
+  }
+}
+
+define behavior for ZEHJ_R_Urlaubsanspruch alias Urlaubsanspruch
+persistent table zehj_urlansp
+lock dependent by _Mitarbeiter
+authorization dependent by _Mitarbeiter
+//etag master <field_name>
+{
+  update;
+  delete;
+field (readonly) Mitarbeiter;
+  association _Mitarbeiter;
+
+  field ( readonly, numbering :managed ) AnspruchUuid;
+
+
+  mapping for ZEHJ_Urlansp corresponding
+  {
+   AnspruchUuid = urlaubsanpruch_id;
+    Mitarbeiter = mitarbeiter;
+    Jahr = jahr;
+    Urlaubstage = urlaubstage;
+
+    CreatedBy = created_by;
+      CreatedAt = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+  }
+}
+
+define behavior for ZEHJ_R_Urlaubsantrag alias Urlaubsantrag
+persistent table zehj_urlantrag
+lock dependent by _Antragsteller
+authorization dependent by _Antragsteller
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  association _Antragsteller;
+
+  action DeclineVacationRequest result [1] $self;
+  action ApproveVacationRequest result [1] $self;
+
+  validation ValidateVacDays on save { create; update; }
+  validation ValidateDates on save { create; update; }
+
+  determination DetermineStatus on modify { field Genehmigender, Startdatum, Enddatum, Kommentar; }
+  determination DetermineVacationDays on modify { field Startdatum, Enddatum; }
+
+  field ( readonly, numbering : managed ) AntragUuid;
+  field (readonly) Antragsteller;
+
+
+
+  mapping for ZEHJ_Urlantrag corresponding
+  {
+
+    AntragUuid  = urlaubsantrag_id;
+    Antragsteller  = antragssteller;
+    Genehmigender = genehmigender;
+    Startdatum = startdatum;
+    Enddatum = enddatum;
+    Urlaubstage = urlaubstage;
+    Kommentar = kommentar;
+    Status = status;
+
+      /* Administrative Data */
+      CreatedBy = created_by;
+      CreatedAt = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+  }
+
+  //association _Genehmigender;
+  //association _Antragsteller;
+}

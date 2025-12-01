@@ -1,0 +1,5 @@
+CLASS zbp_ehj_r_mitarbeiter DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zehj_r_mitarbeiter.
+ENDCLASS.
+
+CLASS zbp_ehj_r_mitarbeiter IMPLEMENTATION.
+ENDCLASS.

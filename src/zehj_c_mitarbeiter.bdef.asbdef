@@ -1,0 +1,28 @@
+projection;
+strict ( 2 );
+
+define behavior for ZEHJ_C_Mitarbeiter //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Urlaubsanspruchs { create; }
+  use association _Urlaubsantrags { create; }
+}
+
+define behavior for ZEHJ_C_Urlaubsanspruch //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Mitarbeiter;
+}
+
+define behavior for ZEHJ_C_Urlaubsantrag //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Antragsteller;
+}

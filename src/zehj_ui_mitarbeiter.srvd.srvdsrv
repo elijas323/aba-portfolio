@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition Mitarbeiter'
+define service ZEHJ_UI_Mitarbeiter {
+  expose ZEHJ_C_Mitarbeiter     as Mitarbeiter;
+  expose ZEHJ_C_Urlaubsanspruch as Urlaubsanpruch;
+  expose ZEHJ_C_Urlaubsantrag   as Urlaubsantrag;
+}
