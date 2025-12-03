@@ -16,10 +16,11 @@ annotate view ZEHJ_C_Mitarbeiter with
     { position: 10, targetQualifier: 'EmployeeDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE },
     { position: 30, targetElement: '_Urlaubsanspruchs', label: 'Urlaubsanspruch', type: #LINEITEM_REFERENCE },
-    { position: 40, targetElement: '_Urlaubsantrags', label: 'Urlaubsantrags', type: #LINEITEM_REFERENCE }
+    { position: 40, targetElement: '_Urlaubsantrags', label: 'Urlaubsantrags', type: #LINEITEM_REFERENCE },
+    { position: 50, targetQualifier: 'Urlaubstage', label: 'Urlaubstage', type: #FIELDGROUP_REFERENCE }
   ]
 
-  /* Fields */
+  
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
   MitarbeiterUuid;
 
@@ -38,6 +39,18 @@ annotate view ZEHJ_C_Mitarbeiter with
   @UI.lineItem: [{ position: 30 }]
   @UI.fieldGroup: [{ position: 30, qualifier: 'EmployeeDetails' }]
   Eintrittsdatum;
+  
+  @UI.fieldGroup: [{ position: 10, qualifier: 'Urlaubstage', label: 'Verfügabare Tage'}]
+  AvailableVacationDays;
+   
+   @UI.fieldGroup: [{ position: 20, qualifier: 'Urlaubstage', label: 'verwendete Tage'}]
+  ConsumedVacationDays;
+  
+  
+  @UI.fieldGroup: [{ position: 30, qualifier: 'Urlaubstage', label: 'verplante Tage'}]
+  PlannedVacationDays;
+  
+  
 
   /* Administrative Data */
      @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]

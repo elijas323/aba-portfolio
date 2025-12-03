@@ -19,7 +19,9 @@ provider contract transactional_query
       Nachname,
       Eintrittsdatum,
       MitarbeiterName,
-
+      AvailableVacationDays,
+      PlannedVacationDays,
+      ConsumedVacationDays,
       /* Administrative Data */
       CreatedBy,
       CreatedAt,

@@ -2,9 +2,15 @@
 @EndUserText.label: 'Interface View Genehmigender'
 define view entity ZEHJ_I_Genehmigender as select from zehj_mitarbeiter
 {
-     key mitarbeiter_uuid as MitarbeiterUuid ,
-     mitarbeiternummer as Mitarbeiternummer,
-     vorname as Vorname,
-     nachname as Nachname,
-     eintrittsdatum as Eintrittsdatum
+     @EndUserText: { label: 'Mitarbeiter Uuid', quickInfo: 'Mitarbeiter Uuid' }
+  key mitarbeiter_uuid                                        as MitarbeiterUuid,
+  
+      @EndUserText: { label: 'Mitarbeiternummer', quickInfo: 'Mitarbeiternummer' }
+      mitarbeiternummer as Mitarbeiternummer,
+      
+      @EndUserText: { label: 'Vorname', quickInfo: 'Vorname' }
+      vorname                                         as Vorname,
+      
+      @EndUserText: { label: 'Nachname', quickInfo: 'Nachname' }
+      nachname                                          as NachName
 }

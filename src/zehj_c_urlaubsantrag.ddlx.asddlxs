@@ -12,15 +12,15 @@ annotate view ZEHJ_C_Urlaubsantrag with
   /* Facets */
   @UI.facet:
   [
-    { position: 10, targetQualifier: 'VacationRequestDetails', label: 'VacationRequestDetails', type: #FIELDGROUP_REFERENCE },
+    { position: 10, targetQualifier: 'VacationRequestDetails', label: 'Urlaubsdetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
   ]
 
   /* Fields */
-  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData', label: 'ID' }]
   AntragUuid;
 
-  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData', label: 'Antragsteller' }]
   Antragsteller;
 
    

@@ -5,12 +5,17 @@ define view entity ZEHJ_C_Urlaubsantrag as projection on ZEHJ_R_Urlaubsantrag
 {
      key AntragUuid,
       Antragsteller,
+      AntragstellerName,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZEHJ_I_GENEHMIGENDER', element: 'MitarbeiterUuid' } }]
       Genehmigender,
+      GenehmigenderName,
       Startdatum,
       Enddatum,
       Urlaubstage,
       Kommentar,
+      @ObjectModel.text.element: [ 'StatusText' ]
       Status,
+      StatusText,
 
       /* Administrative Data */
       CreatedBy,

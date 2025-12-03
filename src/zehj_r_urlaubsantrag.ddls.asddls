@@ -4,6 +4,11 @@
 define view entity ZEHJ_R_Urlaubsantrag as select from zehj_urlantrag
 association to parent ZEHJ_R_Mitarbeiter as _Antragsteller on $projection.Antragsteller = _Antragsteller.MitarbeiterUuid
 association to ZEHJ_R_Mitarbeiter as _Genehmigender on $projection.Genehmigender = _Genehmigender.MitarbeiterUuid
+ association [1..1] to ZEHJ_I_MitarbeiterText    as _EmployeeNameApplicant on $projection.Antragsteller = _EmployeeNameApplicant.mitarbeiter_uuid
+  association [1..1] to ZEHJ_I_MitarbeiterText    as _EmployeeNameApprover  on $projection.Genehmigender = _EmployeeNameApprover.mitarbeiter_uuid
+    association        to Zehj_I_status         as _statustext        on $projection.AntragUuid = _statustext.urlaubsantrag_id
+  
+  
 //association to ZEHJ_I_Genehmigender as _Genehmigener on $projection.
 {
     key urlaubsantrag_id as AntragUuid,
@@ -27,8 +32,10 @@ association to ZEHJ_R_Mitarbeiter as _Genehmigender on $projection.Genehmigender
       //concat_with_space(_Genehmiger.Vorname, _Genehmiger.Nachname, 1) as Name_Genehmigender,
       
      /* Transient Data */
-      //_Status.StatusText as StatusText,
+      _statustext.StatusText as StatusText,
       
+      _EmployeeNameApplicant.Name as AntragstellerName,
+      _EmployeeNameApprover.Name  as GenehmigenderName,
       /* Associations */
       _Antragsteller,
       _Genehmigender

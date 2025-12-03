@@ -7,12 +7,10 @@ lock master
 authorization master ( global )
 //etag master <field_name>
 {
-  create;// ( authorization : global );
-  update;
-  delete;
+
   //field ( readonly ) MitarbeiterUuid;
 
-  association _Urlaubsanspruchs { create; }
+  association _Urlaubsanspruchs;
   association _Urlaubsantrags { create; }
 
   field ( readonly, numbering : managed ) MitarbeiterUuid;
@@ -42,8 +40,7 @@ lock dependent by _Mitarbeiter
 authorization dependent by _Mitarbeiter
 //etag master <field_name>
 {
-  update;
-  delete;
+
 field (readonly) Mitarbeiter;
   association _Mitarbeiter;
 
@@ -84,9 +81,12 @@ authorization dependent by _Antragsteller
   determination DetermineStatus on modify { field Genehmigender, Startdatum, Enddatum, Kommentar; }
   determination DetermineVacationDays on modify { field Startdatum, Enddatum; }
 
-  field ( readonly, numbering : managed ) AntragUuid;
-  field (readonly) Antragsteller;
+  //field ( readonly, numbering : managed ) AntragUuid;
+  //field (readonly) Antragsteller;
 
+field ( readonly, numbering : managed ) AntragUuid;
+  field ( mandatory : create ) Startdatum, Enddatum, Genehmigender;
+  field ( readonly ) AntragstellerName, GenehmigenderName, Antragsteller, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, Urlaubstage;
 
 
   mapping for ZEHJ_Urlantrag corresponding
