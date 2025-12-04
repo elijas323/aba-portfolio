@@ -20,4 +20,5 @@ define behavior for ZEHJ_C_Urlaubsantrag //alias <alias_name>
   use delete;
 
   use association _Antragsteller;
+  use association _Genehmigender;
 }

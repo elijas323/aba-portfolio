@@ -1,0 +1,64 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{ 
+    typeName: 'Urlaubsantrag',
+    typeNamePlural: 'Urlaubsantrags',
+    title.value: 'AntragUuid',
+    description.value: 'Kommentar'
+}
+annotate entity zehj_c_antrag_m
+    with 
+{
+    @UI.facet:
+    [
+        { position: 10, targetQualifier: 'UrlaubsantragsDaten', label: 'Urlaubsantrags Daten', type: #FIELDGROUP_REFERENCE },
+        { position: 20, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
+    ]    
+    
+    @UI.lineItem:
+    [
+        { position: 10, dataAction: 'ApproveVacationRequest', label: 'Genehmigen', type: #FOR_ACTION },
+        { position: 20, dataAction: 'DeclineVacationRequest', label: 'Ablehnen', type: #FOR_ACTION}
+    ]
+    AntragUuid;
+    
+    @UI.lineItem: [ { position: 30, label: 'Antragsteller' } ]
+    @UI.selectionField: [ {position: 10} ]
+    @UI.fieldGroup: [ { position: 20, qualifier: 'UrlaubsantragsDaten', label: 'Antragsteller' } ]
+    AntragstellerName;
+    
+    @UI.lineItem: [ { position: 40, label: 'Genhmigender' } ]
+    @UI.fieldGroup: [ { position: 30, qualifier: 'UrlaubsantragsDaten', label: 'Genhmigender' } ]
+    GenehmigenderName;
+    
+    @UI.lineItem: [ { position: 50, label: 'Startdatum' } ]
+    @UI.fieldGroup: [ { position: 40, qualifier: 'UrlaubsantragsDaten', label: 'Startdatum' } ]
+    Startdatum;
+    
+    @UI.lineItem: [ { position: 60, label: 'Enddatum' } ]
+    @UI.fieldGroup: [ { position: 50, qualifier: 'UrlaubsantragsDaten', label: 'Enddatum' } ]
+    Enddatum;
+    
+    @UI.lineItem: [ { position: 70, label: 'Status' } ]
+    @UI.selectionField: [ {position: 20} ]
+    @UI.fieldGroup: [ { position: 60, qualifier: 'UrlaubsantragsDaten', label: 'Status' } ]
+    Status;
+    
+    @UI.lineItem: [ { position: 80, label: 'Kommentar' } ]
+    @UI.selectionField: [ {position: 30} ]
+    @UI.fieldGroup: [ { position: 70, qualifier: 'UrlaubsantragsDaten', label: 'Kommentar' } ]
+    Kommentar;
+    
+    @UI.fieldGroup: [{ position: 80, qualifier: 'AdminData' }]
+    CreatedBy;
+    
+    @UI.fieldGroup: [{ position: 90, qualifier: 'AdminData' }]
+    CreatedAt;
+    
+    @UI.fieldGroup: [{ position: 100, qualifier: 'AdminData' }]
+    LastChangedBy;
+    
+    @UI.fieldGroup: [{ position: 110, qualifier: 'AdminData' }]
+    LastChangedAt;
+    
+}

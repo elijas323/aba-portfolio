@@ -3,4 +3,5 @@ define service ZEHJ_UI_Mitarbeiter {
   expose ZEHJ_C_Mitarbeiter     as Mitarbeiter;
   expose ZEHJ_C_Urlaubsanspruch as Urlaubsanpruch;
   expose ZEHJ_C_Urlaubsantrag   as Urlaubsantrag;
+  expose zehj_c_antrag_m        as ManagerApp;
 }

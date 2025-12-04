@@ -71,6 +71,7 @@ authorization dependent by _Antragsteller
   delete;
 
   association _Antragsteller;
+  association _Genehmigender;
 
   action DeclineVacationRequest result [1] $self;
   action ApproveVacationRequest result [1] $self;

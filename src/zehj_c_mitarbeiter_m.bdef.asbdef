@@ -1,0 +1,22 @@
+projection;
+strict ( 2 );
+
+define behavior for zehj_c_mitarbeiter_m //alias <alias_name>
+{
+
+  use association _Urlaubsantrags;
+}
+
+define behavior for zehj_c_antrag_m //alias <alias_name>
+{
+  //use update;
+  //use delete;
+
+  use action DeclineVacationRequest;
+  use action ApproveVacationRequest;
+
+
+  use association _Antragsteller;
+  use association _Genehmigender;
+
+}
