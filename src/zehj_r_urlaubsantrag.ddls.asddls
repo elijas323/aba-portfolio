@@ -1,6 +1,5 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Basic View Urlaubsantrag'
-
 define view entity ZEHJ_R_Urlaubsantrag as select from zehj_urlantrag
 association to parent ZEHJ_R_Mitarbeiter as _Antragsteller on $projection.Antragsteller = _Antragsteller.MitarbeiterUuid
 association [1..1] to ZEHJ_R_Mitarbeiter as _Genehmigender on $projection.Genehmigender = _Genehmigender.MitarbeiterUuid
@@ -22,9 +21,13 @@ association [1..1] to ZEHJ_R_Mitarbeiter as _Genehmigender on $projection.Genehm
       //@ObjectModel.text.element: ['StatusText']
       status           as Status,
       /* Administrative Data */
+      @Semantics.user.createdBy: true
       created_by      as CreatedBy,
+      @Semantics.systemDateTime.createdAt: true
       created_at      as CreatedAt,
+      @Semantics.user.lastChangedBy: true
       last_changed_by as LastChangedBy,
+      @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at as LastChangedAt,
       
       /* Custom Data */

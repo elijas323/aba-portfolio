@@ -3,8 +3,8 @@ CLASS lhc_Mitarbeiter DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
      METHODS get_global_authorization FOR GLOBAL AUTHORIZATION
       IMPORTING REQUEST requested_authorization FOR ZEHJ_R_MITARBEITER RESULT result.
-      "METHODS get_global_authorization_i FOR GLOBAL AUTHORIZATION
-      "IMPORTING REQUEST requested_authorization FOR ZEHJ_R_Urlaubsantrag RESULT result.
+      METHODS get_global_authorization_i FOR GLOBAL AUTHORIZATION
+      IMPORTING REQUEST requested_authorization FOR ZEHJ_R_Urlaubsantrag RESULT result.
 
     METHODS ApproveVacationRequest FOR MODIFY
       IMPORTING keys FOR ACTION ZEHJ_R_Urlaubsantrag~ApproveVacationRequest RESULT result.
@@ -30,8 +30,8 @@ CLASS lhc_Mitarbeiter IMPLEMENTATION.
 
   METHOD get_global_authorization.
   ENDMETHOD.
-  "METHOD get_global_authorization_i.
-  "Endmethod.
+  METHOD get_global_authorization_i.
+  Endmethod.
   METHOD ApproveVacationRequest.
     DATA message TYPE REF TO zehj_cm_urlaubsantrag.
 
